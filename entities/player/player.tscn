@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvsq21p3ax6kx"]
+
+[ext_resource type="Script" path="res://entities/player/Movement.cs" id="1_h1xv8"]
+[ext_resource type="Script" path="res://entities/player/Gun.cs" id="4_15qa8"]
+[ext_resource type="PackedScene" uid="uid://br3hhxh1qv17j" path="res://entities/bullet/bullet.tscn" id="5_4rt8g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kfa4c"]
+size = Vector2(63, 58)
+
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("_ship")]
+collision_mask = 2
+motion_mode = 1
+script = ExtResource("1_h1xv8")
+speed = 300.0
+ACCELERATION = 800.0
+DEACCELERATION = 800.0
+_ship = NodePath("Ship")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_kfa4c")
+
+[node name="Ship" type="Polygon2D" parent="."]
+scale = Vector2(1.15217, 1)
+polygon = PackedVector2Array(-26.9057, -29, -26.9057, 28, 26.9057, 0)
+
+[node name="Gun" type="Node2D" parent="."]
+z_index = -1
+script = ExtResource("4_15qa8")
+bullet_tscn = ExtResource("5_4rt8g")
+
+[node name="Polygon2D" type="Polygon2D" parent="Gun"]
+position = Vector2(12, 0)
+scale = Vector2(1.84802, 0.55)
+color = Color(0.333333, 0.388235, 0.996078, 1)
+polygon = PackedVector2Array(-10, -11, 11, -11, 11, -1.00036, 11, 9, -10, 9)
+
+[node name="Muzzle" type="Node2D" parent="Gun"]
+position = Vector2(36, 0)
+scale = Vector2(1.33333, 0.55)

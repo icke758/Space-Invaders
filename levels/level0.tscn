@@ -1,35 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://nby2fv178yno"]
+[gd_scene load_steps=2 format=3 uid="uid://nby2fv178yno"]
 
-[ext_resource type="Script" path="res://entities/player/Movement.cs" id="1_1kpc1"]
-[ext_resource type="Script" path="res://entities/player/Aim.gd" id="2_x1q62"]
-[ext_resource type="Texture2D" uid="uid://fye1l5gcwbln" path="res://entities/player/Player.png" id="3_quf6g"]
-[ext_resource type="Script" path="res://entities/player/Gun.cs" id="4_dgjns"]
-[ext_resource type="PackedScene" uid="uid://br3hhxh1qv17j" path="res://entities/bullet/bullet.tscn" id="5_yrupa"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kfa4c"]
-size = Vector2(63, 58)
+[ext_resource type="PackedScene" uid="uid://dvsq21p3ax6kx" path="res://entities/player/player.tscn" id="1_yl8fr"]
 
 [node name="Level" type="Node"]
 
 [node name="TileMap" type="TileMap" parent="."]
 format = 2
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="TileMap"]
-script = ExtResource("1_1kpc1")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/CharacterBody2D"]
-position = Vector2(-0.5, 0)
-shape = SubResource("RectangleShape2D_kfa4c")
-
-[node name="Marker2D" type="Marker2D" parent="TileMap/CharacterBody2D"]
-script = ExtResource("2_x1q62")
-
-[node name="Sprite2D" type="Sprite2D" parent="TileMap/CharacterBody2D/Marker2D"]
-position = Vector2(-0.500003, 1.46031e-06)
-scale = Vector2(1, 1.01754)
-texture = ExtResource("3_quf6g")
-
-[node name="Gun" type="Node2D" parent="TileMap/CharacterBody2D/Marker2D"]
-position = Vector2(49, 0)
-script = ExtResource("4_dgjns")
-bullet_tscn = ExtResource("5_yrupa")
+[node name="Player" parent="TileMap" instance=ExtResource("1_yl8fr")]
