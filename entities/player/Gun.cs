@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class Gun : Node2D
 {
@@ -21,7 +20,6 @@ public partial class Gun : Node2D
 	{
 		if(Input.IsActionJustPressed("click") && TIME_UNTIL_FIRE > fireRate) {
 			RigidBody2D bullet = bullet_tscn.Instantiate<RigidBody2D>();
-
 			bullet.Rotation = GlobalRotation;
 			bullet.GlobalPosition = GlobalPosition;
 			bullet.LinearVelocity = bullet.Transform.X * BULLET_SPEED;
@@ -29,8 +27,8 @@ public partial class Gun : Node2D
 			GetTree().Root.AddChild(bullet);
 
 			TIME_UNTIL_FIRE = 0f;
-			} else {
-				TIME_UNTIL_FIRE += (float)delta;
-			}
+		} else {
+			TIME_UNTIL_FIRE += (float)delta;
+		}
 	}
 }
